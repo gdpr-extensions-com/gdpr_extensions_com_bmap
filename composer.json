@@ -1,0 +1,45 @@
+{
+  "name": "gdpr_extensions_com/gdpr-extensions-com-bmap",
+  "type": "typo3-cms-extension",
+  "description": "Add Bing Map with single or multi location markers to your website and stay GDPR compliant! Your website viewers will be able to manage their cookie preferences and view the content only if consented. Stay GDPR compliant when your website is scanned by any Cookie or GDPR Scanner!",
+  "authors": [],
+  "license": "GPL-2.0-or-later",
+  "require": {
+    "typo3/cms-core": "^11.5 || ^12.4"
+  },
+  "require-dev": {
+    "typo3/testing-framework": "^6.9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "GdprExtensionsCom\\GdprExtensionsComBmap\\": "Classes"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "GdprExtensionsCom\\GdprExtensionsComBmap\\Tests\\": "Tests"
+    }
+  },
+  "replace": {
+    "typo3-ter/gdpr-extensions-com-bmap": "self.version"
+  },
+  "config": {
+    "vendor-dir": ".Build/vendor",
+    "bin-dir": ".Build/bin",
+    "allow-plugins": {
+      "typo3/class-alias-loader": true,
+      "typo3/cms-composer-installers": true
+    }
+  },
+  "scripts": {
+    "post-autoload-dump": [
+      "TYPO3\\TestingFramework\\Composer\\ExtensionTestEnvironment::prepare"
+    ]
+  },
+  "extra": {
+    "typo3/cms": {
+      "web-dir": ".Build/Web",
+      "extension-key": "gdpr_extensions_com_bmap"
+    }
+  }
+}

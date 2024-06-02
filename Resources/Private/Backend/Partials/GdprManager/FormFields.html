@@ -1,0 +1,830 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<style>
+    .warpper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .tab {
+        cursor: pointer;
+        padding: 10px 20px;
+        margin: 0;
+        background: #EE7202;
+        display: inline-block;
+        color: #fff;
+        border-radius: 3px 3px 0px 0px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
+
+    .panels {
+        background: #fff;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px;
+        min-height: 200px;
+        width: calc(100% - 45px);
+        margin-right: 5px;
+        overflow: hidden;
+        padding: 20px;
+        overflow: auto;   
+        height: 50vh;
+        max-height: 400px;
+    }
+
+    .panel {
+        display: none;
+        animation: fadein 0.8s;
+    }
+
+    @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    .panel-title {
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    .radio {
+        display: none;
+    }
+
+    #one:checked ~ .panels #one-panel,
+    #two:checked ~ .panels #two-panel,
+    #three:checked ~ .panels #three-panel {
+        display: block;
+    }
+
+    #one:checked ~ .tabs #one-tab,
+    #two:checked ~ .tabs #two-tab,
+    #three:checked ~ .tabs #three-tab {
+        background: #fff;
+        color: #000;
+        border-top: 3px solid #EE7202;
+    }
+    .d-flex {
+        display: flex;
+    }
+    .file-upload-wrapper {
+        position: relative;
+    }
+    .file-upload-wrapper .file-upload-input {
+        position: absolute;
+        left: 0;
+        opacity: 0;
+        z-index: 1;
+        cursor: pointer;
+        width: 82px;
+    }
+    .my-4-9 {
+        margin: 4px 0px 9px 0;
+    }
+    .d-none {
+        display: none;
+    }
+    .file-upload-wrapper {
+        margin-top: -12px;
+    }
+    /* toggle btn */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 47px;
+        height: 20px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 15px;
+        width: 15px;
+        left: 3px;
+        bottom: 2.5px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    input:checked + .slider {
+        background-color: #EE7202;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #EE7202;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+    .uplodedImageTitle {
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .pad-3-4 {
+        padding: 3px 4px;
+        outline: none;
+    }
+    .color-field {
+        margin-top: 3px;
+        padding: 0;
+        margin-left: 20px;
+    }
+    .uploadImage{
+        flex-direction: column;
+    }
+    .uploadImage-cookie{
+        flex-direction: column;
+    }
+    .uploadImage-cookie img{
+        width: 200px;
+        height: auto;
+        object-fit: contain;
+    }
+    .uploadImage img{
+        width: 200px;
+        height: auto;
+        object-fit: contain;
+    }
+    .field-style {
+        border-color: #D1D1D1;
+        border: 1px solid #D1D1D1;
+        border-radius: 6px;
+        padding: 6px 9px;
+        width: 340px;
+        outline: none;
+    }
+    .mt-5px {
+        margin-top: 5px;
+    }
+    input::-webkit-color-swatch {
+        border-color: red;
+        border: 0;
+    }
+    .color-span {
+        border-radius: 6px;
+        box-shadow: 0 0 6px rgba(0,0,0,.15);
+        height: 32px;
+        margin-left: 16px;
+        overflow: hidden;
+        width: 32px;
+        margin-top: 3px;
+    }
+    input[type="color"].color-field {
+        border: none;
+        cursor: pointer;
+        height: 41px;
+        left: -3px;
+        position: relative;
+        top: -7px;
+        width: 41px;
+        margin-left: 0;
+    }
+    .uploaded-image {
+        width: 350px;
+        height: 250px;
+        background-color: white;
+        box-shadow: 0px 0px 6px 0px #00000026;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .cookie-icon {
+        width: 150px;
+        height: 100px;
+        background-color: white;
+        box-shadow: 0px 0px 6px 0px #00000026;
+        border-radius: 6px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5px;
+    }
+    .cookie-icon img {
+        width: 70px;
+        height: auto;
+        object-fit: contain;
+    }
+    .btn-bg-transparent {
+        background: transparent;
+        border-radius: 6px;
+        border: 1px solid #EE7202;
+        color: #EE7202;
+        padding: 8px 17px;
+        margin-top: 12px;
+        width: 108px;
+    }
+    .w-185px {
+        width: 185px;
+    }
+
+    .field_label {
+        color:  #e90b0b;
+        white-space: nowrap;
+        font: 500 16px/24px Poppins, sans-serif;
+    }
+
+    .field_input {
+        align-items: center;
+        border-radius: 6px;
+        border: 1px solid  #d1d1d1;
+        background-color:  #fff;
+        display: flex;
+        margin-top: 8px;
+        height: 37px;
+        flex-direction: column;
+        padding-left: 8px;
+    }
+    .location_fields{
+        display: flex;
+        margin-top: 34px;
+        width: 588px;
+        max-width: 100%;
+        justify-content: space-between;
+        gap: 20px;
+    }
+    .location_fields .field_input{
+        width: 282px;
+    }
+    .location_coordinates {
+        display: flex;
+        margin-top: 24px;
+        width: 588px;
+        max-width: 100%;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .coordinate_input {
+        align-items: center;
+        border-radius: 6px;
+        border: 1px solid #d1d1d1;
+        background-color: #fff;
+        display: flex;
+        margin-top: 8px;
+        height: 37px;
+        flex-direction: column;
+        width: 282px;
+        padding-left: 8px;
+    }
+
+    .coordinate_field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .coordinate_label {
+        color: #e90b0b;
+        white-space: nowrap;
+        font: 500 16px/24px Poppins, sans-serif;
+    }
+
+    .coordinate_input {
+        align-items: center;
+        border-radius: 6px;
+        border: 1px solid #d1d1d1;
+        background-color: #fff;
+        display: flex;
+        margin-top: 8px;
+        height: 37px;
+        flex-direction: column;
+    }
+
+    .add_location {
+        color:  #ee7202;
+        border-radius: 6px;
+        border: 1px solid #ee7202;
+        background-color: #fff;
+        margin-top: 35px;
+        width: fit-content;
+        padding: 8px 17px;
+        margin-bottom: 30px;
+        cursor: pointer;
+    }
+</style>
+<div class="warpper">
+
+
+    <div class="d-none" id="oldResources">
+        <f:for each="{gdprManager.locations}" as="location">
+            <div>
+                <div class="mapId">{location.uid}</div>
+                <div class="mapname">{location.title}</div>
+                <span class="mapAddress">{location.address}</span>
+                <span class="maplat">{location.lat}</span>
+                <span class="maplon">{location.lon}</span>
+            </div>
+
+        </f:for>
+        <span class="mapZoom" id="mapZoom">{map.zoom}</span>
+    </div>
+
+
+    <input class="radio" id="one" name="group" type="radio" checked>
+    <input class="radio" id="two" name="group" type="radio">
+    <f:if condition="{googlemaps}">
+        <input class="radio" id="three" name="group" type="radio">
+    </f:if>
+
+    <div class="tabs">
+        <label class="tab" id="one-tab" for="one">Content</label>
+        <label class="tab" id="two-tab" for="two">Content Styling</label>
+        <f:if condition="{googlemaps}">
+            <label class="tab" id="three-tab" for="three">Map Location</label>
+        </f:if>
+
+    </div>
+    <div class="panels">
+        <div class="panel" id="one-panel">
+            <div class="">
+                <label for="heading">
+                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.heading" extensionName="GdprExtensionsComBmap"/>
+                </label><br />
+                <f:form.textfield property="heading" id="heading" class="my-4-9 pad-3-4 field-style"/><br />
+                <label for="buttonText">
+                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_text" extensionName="GdprExtensionsComBmap" />
+                </label><br />
+                <f:form.textfield property="buttonText" id="buttonText" class="my-4-9 pad-3-4 field-style"/><br />
+                <label for="content">
+                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.content" extensionName="GdprExtensionsComBmap"/>
+                </label><br />
+                <f:form.textarea property="content" id="content" cols="40" rows="15" class="my-4-9 pad-3-4 field-style"/><br />
+            </div>
+        </div>
+        <div class="panel" id="two-panel">
+            <div class="d-flex">
+                <div class="uplodedImageTitle">
+                    <f:translate key="tx_gdprextensionscomyoutubeshorts_domain_model_gdprmanager" extensionName="GdprExtensionsComBmap" />
+                </div>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <f:form.textfield property="enableBackgroundImage" id="enabledbackgroundImage" class="d-none" />
+            </div>
+            <div class="uploadImage d-none">
+                <f:if condition="{gdprManager.backgroundImage} == ''">
+                    <f:then>
+                        <div class="uploaded-image">
+                            <f:image src="EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/Extension.svg" id="selected-image"
+                                     alt=""
+                                     class="back_img" />
+                        </div>
+
+                    </f:then>
+                    <f:else>
+                        <div class="uploaded-image">
+                            <f:image src="{gdprManager.backgroundImage}" id="selected-image"
+                                     alt=""
+                                     class="back_img" />
+                        </div>
+                    </f:else>
+                </f:if>
+                <f:form.textarea property="backgroundImage" id="backgroundImage" cols="40" rows="15"  class="d-none" /><br />
+                <div class="file-upload-wrapper my-4-9" id="selected-image-container">
+                    <button class="choose_file btn-bg-transparent" >Choose file</button>
+                    <input
+                        type="file"
+                        id="file-input"
+                        name="image"
+                        accept="image/*"
+                        class="file-upload-input btn-bg-transparent"
+                    />
+                </div>
+            </div>
+
+            <div class="bg-color-parent d-block">
+                <label for="backgroundImageColor">
+                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.background_image_color" extensionName="GdprExtensionsComBmap"/>
+                </label><br />
+                <div class="d-flex">
+                    <f:form.textfield property="backgroundImageColor" id="backgroundImageColor" class="my-4-9 pad-3-4 colorField field-style w-185px"/>
+                    <span class="color-span">
+						<input type="color" id="favcolor" name="favcolor" value="{f:if(condition:'{gdprManager.backgroundImageColor}',then:'{gdprManager.backgroundImageColor}',else:'#000')}" class="color-field bg-empty-color">
+					</span>
+                </div>
+            </div>
+            <br />
+            <label for="buttonColor">
+                <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_color" extensionName="GdprExtensionsComBmap" />
+            </label><br />
+            <div class="d-flex">
+                <f:form.textfield property="buttonColor" id="buttonColor" class="my-4-9 pad-3-4 colorField field-style w-185px"/>
+                <span class="color-span">
+					<input type="color" id="favcolor" name="favcolor" value="{f:if(condition:'{gdprManager.buttonColor}',then:'{gdprManager.buttonColor}',else:'#000')}" class="color-field">
+				</span>
+            </div>
+            <br />
+            <label for="textColor">
+                <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.text_color" extensionName="GdprExtensionsComBmap" />
+            </label><br />
+            <div class="d-flex">
+                <f:form.textfield property="textColor" id="textColor" class="my-4-9 pad-3-4 colorField field-style w-185px"/>
+                <span class="color-span">
+					<input type="color" id="favcolor" name="favcolor" value="{f:if(condition:'{gdprManager.textColor}',then:'{gdprManager.textColor}',else:'#000')}" class="color-field">
+				</span>
+            </div>
+            <br />
+            <label for="buttonTextColor">
+                <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_text_color" extensionName="GdprExtensionsComBmap" />
+            </label><br />
+            <div class="d-flex">
+                <f:form.textfield property="buttonTextColor" id="buttonTextColor" class="my-4-9 pad-3-4 colorField field-style w-185px"/>
+                <span class="color-span">
+					<input type="color" id="buttonTextColor" name="favcolor" value="{f:if(condition:'{gdprManager.buttonTextColor}',then:'{gdprManager.buttonTextColor}',else:'#000')}" class="color-field">
+				</span>
+            </div>
+            <br />
+            <label for="buttonShape">
+                <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_shape" extensionName="GdprExtensionsComBmap" />
+            </label><br />
+            <div class="d-flex">
+                <f:form.select name="buttonShape" property="buttonShape" class="field-style mt-5px w-185px">
+                    <f:form.select.option value="0">Default</f:form.select.option>
+                    <f:form.select.option value="round">Round</f:form.select.option>
+                    <f:form.select.option value="square">Square</f:form.select.option>
+                </f:form.select>
+            </div>
+            <br />
+        </div>
+        <f:if condition="{googlemaps}">
+            <div class="panel" id="three-panel">
+                <label for="mapApi">
+                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_api" extensionName="GdprExtensionsComBmap"/>
+                </label><br />
+                <f:form.textfield property="mapApi" name="mapApi" id="mapApi" class="my-4-9 pad-3-4 field-style" value="{mapApiKey}"/><br />
+                <div id="locations-container" style="border-top: 2px solid #E7E6E6; margin-top: 33px;">
+                    <div class="location_fields">
+                        <div class="location_field">
+                            <div class="field_label">
+                        <span style="color: #0e0f0f">
+                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_title" extensionName="GdprExtensionsComBmap"/>
+                        </span>
+                                <span style="color: rgba(233, 11, 11, 1)">
+                                *
+                        </span>
+                            </div>
+                            <input type="text" id="title0" class="field_input" name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][title]"
+                                   value="" />
+                        </div>
+                        <input type="text" id="mapId0" class=" d-none" name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][mapId]"
+                        value="" />
+                        <div class="location_field">
+                            <div class="field_label">
+                        <span style="color: #0e0f0f">
+                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_description" extensionName="GdprExtensionsComBmap"/>
+                        </span>
+                                <span style="color: rgba(233, 11, 11, 1)">
+                                *
+                        </span>
+                            </div>
+                            <input type="text" id="address0" class="field_input" name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][address]"
+                                   value="" />
+                        </div>
+                    </div>
+                    <div class="location_coordinates">
+                        <div class="coordinate_field">
+                            <div class="coordinate_label">
+                        <span style="color: #0e0f0f">
+                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_latitude" extensionName="GdprExtensionsComBmap"/>
+                        </span>
+                                <span style="color: rgba(233, 11, 11, 1)">
+                                *
+                        </span>
+                            </div>
+                            <input type="number" class="coordinate_input" id="latitude0"
+                                   name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][lat]" value="" step="any" />
+                        </div>
+                        <div class="coordinate_field">
+                            <div class="coordinate_label">
+                        <span style="color: #0e0f0f">
+                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_longitude" extensionName="GdprExtensionsComBmap"/>
+                        </span>
+                                <span style="color: rgba(233, 11, 11, 1)">
+                                *
+                        </span>
+                            </div>
+                            <input type="number" class="coordinate_input" id="longitude0"
+                                   name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][lon]" value="" step="any" />
+                        </div>
+                    </div>
+                </div>
+
+                <button id="add-location-btn" file class="add_location">
+                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_addlocation" extensionName="GdprExtensionsComBmap"/>
+                </button>
+            </div>
+            <script>
+                // for Map locations
+                const mapId = document.querySelectorAll('.mapId')
+                const mapName = document.querySelectorAll('.mapname')
+                const mapAddress = document.querySelectorAll('.mapAddress')
+                const mapLat = document.querySelectorAll('.maplat')
+                const mapLon = document.querySelectorAll('.maplon')
+                let count = 0;
+
+                let locationData = {
+                    location0: { title: "", address: "", latitude: "", longitude: "" },
+
+                };
+
+                const addLocationButton = document.getElementById("add-location-btn");
+                const locationsContainer = document.getElementById(
+                    "locations-container"
+                );
+
+                addLocationButton.addEventListener("click", function (event) {
+                    event.preventDefault();
+                    addLocation();
+
+                });
+
+
+                const addLocation = () => {
+                    count++;
+                    const locationFieldSet = document.createElement("div");
+                    locationFieldSet.className = "location-field-set";
+                    locationFieldSet.dataset.locationId = `location${count}`;
+
+                    locationFieldSet.innerHTML = `
+            <div style="border-top: 2px solid #E7E6E6; margin-top: 33px;">
+            <div class="close-location" style="display: flex; flex-direction: row-reverse; margin-top:18px; cursor: pointer">
+                &times;
+            </div>
+            <div class="location_fields" style="border-top: 2px black; margin-top:0;">
+                <div class="location_field">
+                    <label for="title${count}">Title <b style="color:red">*</b></label>
+                    <input type="text"
+                           id="title${count}"
+                           name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][title]"
+                           class="field_input" />
+                </div>
+                <input type="text"
+                           id="mapId${count}"
+                           name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][mapId]"
+                           class="field_input"
+                           style="display: none;" />
+                <div class="location_field">
+                    <label for="address${count}">Description <b style="color:red">*</b></label>
+                    <input type="text"
+                           id="address${count}"
+                           name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][address]"
+                           class="field_input" />
+                </div>
+                </div>
+                <br/>
+                <div style="display:flex;gap:20px">
+                <div class="coordinate_field">
+                    <label for="latitude${count}">Latitude <b style="color:red">*</b></label>
+                    <input type="number"
+                           id="latitude${count}"
+                           name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][lat]"
+                           class="coordinate_input"
+                           step="any"
+                           data-coordinate-type="latitude" />
+                </div>
+                <div class="coordinate_field">
+                    <label for="longitude${count}">Longitude <b style="color:red">*</b></label>
+                    <input type="number"
+                           id="longitude${count}"
+                           name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][lon]"
+                           class="coordinate_input"
+                           step="any"
+                           data-coordinate-type="longitude" />
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+  `;
+
+                    locationsContainer.appendChild(locationFieldSet);
+
+                    // Close button handler
+                    locationFieldSet
+                        .querySelector(".close-location")
+                        .addEventListener("click", function () {
+                            delete locationData[locationFieldSet.dataset.locationId];
+                            locationsContainer.removeChild(locationFieldSet);
+                            // initMap();
+                        });
+
+                    // Initialize the location data object for this set
+                    locationData[`location${count}`] = {
+                        mapId:"",
+                        title: "",
+                        address: "",
+                        latitude: "",
+                        longitude: "",
+                    };
+
+                    // Function to update location data object when an input changes
+                    const updateLocationData = (element, type) => {
+                        const locationId = element.closest(".location-field-set")
+                            .dataset.locationId;
+                        locationData[locationId][type] = element.value.trim();
+                        // initMap();
+                    };
+
+                    // Event listeners for change on latitude and longitude
+                    locationFieldSet
+                        .querySelector(`#latitude${count}`)
+                        .addEventListener("change", function () {
+                            updateLocationData(this, "latitude");
+                        });
+
+                    locationFieldSet
+                        .querySelector(`#longitude${count}`)
+                        .addEventListener("change", function () {
+                            updateLocationData(this, "longitude");
+                        });
+
+                    showPopup = true;
+                }
+
+                if (mapName && mapName.length > 0) {
+                    function populateFields(i) {
+                        console.log(locationData , locationData[`location${i}`]["mapId"]);
+                        document.getElementById(`mapId` + i).value = locationData[`location${i}`]["mapId"];
+                        document.getElementById(`title` + i).value = locationData[`location${i}`]["title"];
+                        document.getElementById(`address${i}`).value = locationData[`location${i}`]["address"];
+                        document.getElementById(`latitude${i}`).value = parseFloat(locationData[`location${i}`]["latitude"]);
+                        document.getElementById(`longitude${i}`).value = parseFloat(locationData[`location${i}`]["longitude"]);
+                    }
+                    mapName.forEach((v, i) => {
+                        if (mapName.length != i) {
+                            addLocation()
+                            console.log('hello' , v ,mapId[i].innerHTML);
+                            locationData['location' + i]["mapId"] = mapId[i].innerHTML;
+                            locationData['location' + i]["title"] = v.innerHTML;
+                            locationData['location' + i]["address"] = mapAddress[i].innerHTML;
+                            locationData['location' + i]["latitude"] = mapLat[i].innerHTML / 1000000;
+                            locationData['location' + i]["longitude"] = mapLon[i].innerHTML / 1000000;
+                        }
+                    })
+                    setTimeout(function () {
+                        for (let i = 0; i < Object.keys(locationData).length ; i++) {
+                            populateFields(i);
+                        }
+                    }, 1000);
+                }
+            </script>
+        </f:if>
+
+    </div>
+</div>
+
+
+<script>
+    const backgroudImage = document.getElementById("backgroundImage");
+
+    const uploadImageUrl =
+        document.getElementById("uploadImageUrl").innerText;
+
+    document
+        .getElementById("file-input")
+        ?.addEventListener("change", handleFileSelect);
+
+    function handleFileSelect(event) {
+        const fileInput = event.target;
+        const selectedImageContainer = document.getElementById(
+            "selected-image-container"
+        );
+        const selectedImage = document.getElementById("selected-image");
+
+        const file = fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                selectedImage.src = e.target.result;
+                selectedImageContainer.style.display = "block";
+            };
+
+            reader.readAsDataURL(file);
+
+            const formData = new FormData();
+            formData.append("image", file);
+            formData.append("isAjax", 1);
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", uploadImageUrl, true);
+            xhr.setRequestHeader("Accept", "application/json");
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    backgroudImage.value = response.url;
+                } else {
+                    console.log("Error");
+                }
+            };
+            xhr.send(formData);
+        } else {
+            selectedImageContainer.style.display = "none";
+        }
+    }
+
+    var checkbox = document.querySelector('.switch input[type="checkbox"]');
+
+    checkbox.addEventListener('change', function() {
+        toggle(this);
+    });
+
+    var colorPickers = document.querySelectorAll('.color-field');
+
+    // Loop through each color picker
+    colorPickers.forEach(function(picker) {
+        picker.addEventListener('change', function(e) {
+            var color = e.target.parentElement.parentElement.querySelector('.colorField');
+            color.value = e.target.value
+        });
+    });
+
+    let enabledbackgroundImage = document.getElementById('enabledbackgroundImage');
+    let checkboxToggle = document.querySelector('.switch input');
+    let backgroundImageColor = document.querySelector('#backgroundImageColor');
+    let bgEmptyColor = document.querySelector('.bg-empty-color');
+    if(enabledbackgroundImage.value == 1) {
+        checkboxToggle.setAttribute('checked', true);
+        toggle('image')
+    } else if(enabledbackgroundImage.value == 0) {
+        toggle('bg-color')
+    }
+
+    function toggle(e) {
+        var uploadImageDiv = document.querySelector('.uploadImage');
+        var bgcolorDiv = document.querySelector('.bg-color-parent');
+        if (e.checked) {
+            uploadImageDiv.classList.remove('d-none');
+            uploadImageDiv.classList.add('d-flex');
+            bgcolorDiv.classList.remove('d-block');
+            bgcolorDiv.classList.add('d-none');
+            enabledbackgroundImage.value = 1
+            backgroundImageColor.value="";
+            bgEmptyColor.value='#000';
+        } else if(e.checked == false) {
+            uploadImageDiv.classList.remove('d-flex');
+            uploadImageDiv.classList.add('d-none');
+            bgcolorDiv.classList.add('d-block');
+            bgcolorDiv.classList.remove('d-none');
+            enabledbackgroundImage.value = 0
+        }
+
+        if(e == 'image') {
+            uploadImageDiv.classList.remove('d-none');
+            uploadImageDiv.classList.add('d-flex');
+            bgcolorDiv.classList.remove('d-block');
+            bgcolorDiv.classList.add('d-none');
+            backgroundImageColor.value="";
+            bgEmptyColor.value='#000';
+        }
+
+        if(e == 'bg-color') {
+            uploadImageDiv.classList.remove('d-flex');
+            uploadImageDiv.classList.add('d-none');
+            bgcolorDiv.classList.add('d-block');
+            bgcolorDiv.classList.remove('d-none');
+        }
+    }
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,29 @@
+plugin.tx_gdprextensionscombmap_gdprbingmap {
+    view {
+        # cat=plugin.tx_gdprextensionscombmap_gdprbingmap/file; type=string; label=Path to template root (FE)
+        templateRootPath = EXT:gdpr_extensions_com_bmap/Resources/Private/Templates/
+        # cat=plugin.tx_gdprextensionscombmap_gdprbingmap/file; type=string; label=Path to template partials (FE)
+        partialRootPath = EXT:gdpr_extensions_com_bmap/Resources/Private/Partials/
+        # cat=plugin.tx_gdprextensionscombmap_gdprbingmap/file; type=string; label=Path to template layouts (FE)
+        layoutRootPath = EXT:gdpr_extensions_com_bmap/Resources/Private/Layouts/
+    }
+    persistence {
+        # cat=plugin.tx_gdprextensionscombmap_gdprbingmap//a; type=string; label=Default storage PID
+        storagePid =
+    }
+}
+
+module.tx_gdprextensionscombmap_gdprmanager {
+    view {
+        # cat=module.tx_gdprextensionscombmap_gdprmanager/file; type=string; label=Path to template root (BE)
+        templateRootPath = EXT:gdpr_extensions_com_bmap/Resources/Private/Backend/Templates/
+        # cat=module.tx_gdprextensionscombmap_gdprmanager/file; type=string; label=Path to template partials (BE)
+        partialRootPath = EXT:gdpr_extensions_com_bmap/Resources/Private/Backend/Partials/
+        # cat=module.tx_gdprextensionscombmap_gdprmanager/file; type=string; label=Path to template layouts (BE)
+        layoutRootPath = EXT:gdpr_extensions_com_bmap/Resources/Private/Backend/Layouts/
+    }
+    persistence {
+        # cat=module.tx_gdprextensionscomyoutube_gdprmanager//a; type=string; label=Default storage PID
+        storagePid =
+    }
+}

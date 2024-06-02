@@ -1,0 +1,101 @@
+plugin.tx_gdprextensionscombmap_gdprbingmap {
+    view {
+        templateRootPaths.0 = EXT:gdpr_extensions_com_bmap/Resources/Private/Templates/
+        templateRootPaths.1 = {$plugin.tx_gdprextensionscombmap_gdprbingmap.view.templateRootPath}
+        partialRootPaths.0 = EXT:gdpr_extensions_com_bmap/Resources/Private/Partials/
+        partialRootPaths.1 = {$plugin.tx_gdprextensionscombmap_gdprbingmap.view.partialRootPath}
+        layoutRootPaths.0 = EXT:gdpr_extensions_com_bmap/Resources/Private/Layouts/
+        layoutRootPaths.1 = {$plugin.tx_gdprextensionscombmap_gdprbingmap.view.layoutRootPath}
+    }
+    persistence {
+        storagePid = {$plugin.tx_gdprextensionscombmap_gdprbingmap.persistence.storagePid}
+        #recursive = 1
+    }
+    features {
+        #skipDefaultArguments = 1
+        # if set to 1, the enable fields are ignored in BE context
+        ignoreAllEnableFieldsInBe = 0
+    }
+    mvc {
+        #callDefaultActionIfActionCantBeResolved = 1
+    }
+}
+
+plugin.tx_gdprextensionscombm_gdprcookiewidget {
+    view {
+        templateRootPaths.0 = EXT:gdpr_extensions_com_bmap/Resources/Private/Templates/
+
+    }
+    persistence {
+
+    }
+    features {
+
+    }
+    mvc {
+        #callDefaultActionIfActionCantBeResolved = 1
+    }
+}
+
+
+
+config.tx_extbase {
+    persistence {
+        classes {
+            GdprExtensionsCom\GdprExtensionsComBmap\Domain\Model\GdprManager {
+                mapping {
+                    tableName = tx_gdprextensionscomyoutube_domain_model_gdprmanager
+                }
+            }
+        }
+    }
+}
+
+# these classes are only used in auto-generated templates
+plugin.tx_gdprextensionscombmap._CSS_DEFAULT_STYLE (
+    textarea.f3-form-error {
+        background-color: #FF9F9F;
+        border: 1px #FF0000 solid;
+    }
+
+    input.f3-form-error {
+        background-color: #FF9F9F;
+        border: 1px #FF0000 solid;
+    }
+
+    .tx-gdpr-extensions-com-bmap table {
+        border-collapse: separate;
+        border-spacing: 10px;
+    }
+
+    .tx-gdpr-extensions-com-bmap table th {
+        font-weight: bold;
+    }
+
+    .tx-gdpr-extensions-com-bmap table td {
+        vertical-align: top;
+    }
+
+    .typo3-messages .message-error {
+        color: red;
+    }
+
+    .typo3-messages .message-ok {
+        color: green;
+    }
+)
+
+# Module configuration
+module.tx_gdprextensionscombmap {
+    persistence {
+        storagePid = {$module.tx_gdprextensionscombmap_gdprmanager.persistence.storagePid}
+    }
+    view {
+        templateRootPaths.0 = EXT:gdpr_extensions_com_bmap/Resources/Private/Backend/Templates/
+        templateRootPaths.1 = {$module.tx_gdprextensionscombmap_gdprmanager.view.templateRootPath}
+        partialRootPaths.0 = EXT:gdpr_extensions_com_bmap/Resources/Private/Backend/Partials/
+        partialRootPaths.1 = {$module.tx_gdprextensionscombmap_gdprmanager.view.partialRootPath}
+        layoutRootPaths.0 = EXT:gdpr_extensions_com_bmap/Resources/Private/Backend/Layouts/
+        layoutRootPaths.1 = {$module.tx_gdprextensionscomyoutube_gdprmanager.view.layoutRootPath}
+    }
+}
