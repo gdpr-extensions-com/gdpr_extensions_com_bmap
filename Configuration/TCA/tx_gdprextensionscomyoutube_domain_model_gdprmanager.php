@@ -20,7 +20,7 @@ return [
         'iconfile' => 'EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/tx_gdprextensionscomgooglemaps_domain_model_gdprmanager.gif'
     ],
     'types' => [
-        '1' => ['showitem' => 'heading, content, button_text, enable_background_image, background_image, background_image_color, button_color, text_color, button_text_color, button_shape , map_api , extension_title , --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, starttime, endtime'],
+        '1' => ['showitem' => 'heading, content, button_text, enable_background_image, background_image, background_image_color,heading_color, button_color, text_color, button_text_color, button_shape , map_api , extension_title , --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource, --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, starttime, endtime'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -141,7 +141,17 @@ return [
                 'default' => 0
             ]
         ],
-
+        'heading_color' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:gdpr_extensions_com_youtube/Resources/Private/Language/locallang_db.xlf:tx_gdprextensionscomyoutube_domain_model_gdprmanager.text_color',
+            'description' => 'LLL:EXT:gdpr_extensions_com_youtube/Resources/Private/Language/locallang_db.xlf:tx_gdprextensionscomyoutube_domain_model_gdprmanager.text_color.description',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim',
+                'default' => ''
+            ],
+        ],
         'background_image' => [
             'exclude' => true,
             'label' => 'LLL:EXT:gdpr_extensions_com_bmap/Resources/Private/Language/locallang_db.xlf:tx_gdprextensionscomyoutube_domain_model_gdprmanager.background_image',

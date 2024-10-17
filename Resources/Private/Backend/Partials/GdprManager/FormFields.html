@@ -1,71 +1,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 
 <style>
-    .warpper {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .tab {
-        cursor: pointer;
-        padding: 10px 20px;
-        margin: 0;
-        background: #EE7202;
-        display: inline-block;
-        color: #fff;
-        border-radius: 3px 3px 0px 0px;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    }
-
-    .panels {
-        background: #fff;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px;
-        min-height: 200px;
-        width: calc(100% - 45px);
-        margin-right: 5px;
-        overflow: hidden;
-        padding: 20px;
-        overflow: auto;   
-        height: 50vh;
-        max-height: 400px;
-    }
-
-    .panel {
-        display: none;
-        animation: fadein 0.8s;
-    }
-
-    @keyframes fadein {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-
-    .panel-title {
-        font-size: 1.5em;
-        font-weight: bold;
-    }
-
-    .radio {
-        display: none;
-    }
-
-    #one:checked ~ .panels #one-panel,
-    #two:checked ~ .panels #two-panel,
-    #three:checked ~ .panels #three-panel {
-        display: block;
-    }
-
-    #one:checked ~ .tabs #one-tab,
-    #two:checked ~ .tabs #two-tab,
-    #three:checked ~ .tabs #three-tab {
-        background: #fff;
-        color: #000;
-        border-top: 3px solid #EE7202;
-    }
     .d-flex {
         display: flex;
     }
@@ -164,7 +99,7 @@
         margin-left: 20px;
     }
     .uploadImage{
-        flex-direction: column;
+        gap:10px;
     }
     .uploadImage-cookie{
         flex-direction: column;
@@ -194,25 +129,28 @@
         border-color: red;
         border: 0;
     }
-    .color-span {
-        border-radius: 6px;
-        box-shadow: 0 0 6px rgba(0,0,0,.15);
-        height: 32px;
-        margin-left: 16px;
-        overflow: hidden;
-        width: 32px;
-        margin-top: 3px;
-    }
+
     input[type="color"].color-field {
-        border: none;
         cursor: pointer;
-        height: 41px;
-        left: -3px;
         position: relative;
-        top: -7px;
-        width: 41px;
+        width: 32px;
+        height: 32px;
+        border-radius: 6px;
+        padding: 0;
+        border: 1px solid #2172B1;
+        overflow: hidden;
+        margin-right: 0;
         margin-left: 0;
     }
+
+    input[type="color"].color-field::-webkit-color-swatch {
+        border: none;
+    }
+
+    input[type="color"].color-field::-webkit-color-swatch-wrapper {
+        padding: 0px;
+    }
+
     .uploaded-image {
         width: 350px;
         height: 250px;
@@ -335,496 +273,1342 @@
         margin-bottom: 30px;
         cursor: pointer;
     }
+    /* new styling */
+   .bmap2Click{
+        font-family: 'Poppins' !important;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        height: 80vh;
+        overflow-y: auto;
+    }
+
+    p {
+        color: #626262;
+        font-size: 16px;
+        margin: 8px 0;
+    }
+
+    h2 {
+        margin: 10px 0;
+    }
+
+    a {
+        text-decoration: none;
+        color: #487DD6;
+        padding: 4px 0;
+    }
+
+    .gap {
+        gap: 10px;
+    }
+
+    .btn {
+        border: 0;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 23px;
+        padding: 8px 16px;
+        text-decoration: none;
+    }
+
+    .btn-outline {
+        border: 1px solid #ee7202;
+        color: #ee7202 !important;
+    }
+
+    .btn-primary {
+        border: 1px solid #ee7202;
+        background-color: #ee7202;
+        color: #fff !important;
+    }
+
+    .btn-default {
+        margin: 20px;
+    }
+
+    .extensionPromotions {
+        display: flex;
+        gap: 30px;
+        margin-top: 20px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #E7E6E6;
+    }
+
+    .extensionPromotions p {
+        font-size: 16px;
+        line-height: 8px;
+    }
+
+    .bold {
+        font-weight: 600;
+        color: #000;
+    }
+
+    .light {
+        font-size: 10px !important;
+        font-weight: 400px;
+        color: #626262;
+    }
+
+    .pair-center {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .pair-end {
+        display: flex;
+        align-items: end;
+        gap: 15px;
+    }
+
+    .center {
+        align-items: center;
+    }
+
+    .mt-1 {
+        margin-top: 10px;
+    }
+
+    .mt-2 {
+        margin-top: 20px;
+    }
+
+    .mb-2 {
+        margin-bottom: 20px;
+    }
+
+    .mb-3 {
+        margin-bottom: 30px;
+    }
+
+    .main-headline {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .custom-accordion {
+        margin-top: 20px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #E7E6E6;
+    }
+
+    .custom-accordion .accordion-toggle {
+        background-color: #F3F2F2;
+        color: black;
+        cursor: pointer;
+        padding: 10px;
+        width: 100%;
+        text-align: left;
+        border: none;
+        outline: none;
+        transition: background-color 0.3s ease;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 6px;
+    }
+
+    .accordion-toggle.rotate-image img {
+        transform: rotate(90deg);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .custom-accordion .accordion-toggle:not(:last-child) {
+        border-bottom: 1px solid #e7e7e7;
+    }
+
+    .custom-accordion .accordion-toggle:hover,
+    .custom-accordion .accordion-toggle.active {
+        background-color: #F3F2F2;
+    }
+
+    .custom-accordion .accordion-content {
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        max-height: 0;
+        padding-left: 15px;
+        background-color: #fff;
+    }
+
+    .custom-accordion .accordion-content p {
+        margin: 8px 0;
+    }
+
+    .rec-size {
+        margin-top: 8px !important;
+        margin-bottom: 12px !important;
+        font-size: 10px;
+    }
+
+    .popUpoverlay {
+        backdrop-filter: blur(3px);
+        background: rgba(52, 52, 52, .8);
+        left: 0;
+        min-height: 100%;
+        position: fixed;
+        top: 0;
+        transition: all .3s ease-out;
+        width: 100%;
+        z-index: 11;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .popUp {
+        background-color: #fff;
+        max-width: 900px;
+        display: flex;
+        align-items: center;
+        padding: 40px;
+    }
+
+    .popUp--content {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        background: #525252;
+        padding: 40px;
+        width: 500px;
+        height: 200px;
+    }
+
+    .popUp--content .bold,
+    .popUp--content .light {
+        color: #fff !important;
+    }
+
+    .upload-btn {
+        color: #ee7202;
+        background: transparent;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        border: 1px solid #ee7202;
+        display: flex;
+        align-items: center;
+        max-width: 50px;
+        height: 40px;
+        height: 37px;
+        margin-top: 3px;
+    }
+
+    .upload-btn img {
+        width: 24px;
+        height: 24px !important;
+    }
+
+    .upload-icon {
+        width: 100%;
+    }
+
+    .uploadImage img {
+        width: unset;
+        height: auto;
+        object-fit: contain;
+    }
+
+   img.cancel {
+        position: relative;
+        width: 12px !important;
+        height: 12px !important;
+        right: 12px;
+        bottom: 3px;
+    }
+
+
+    button.choose_file {
+        border: 1px solid #ee7202;
+        color: #ee7202;
+        background: transparent;
+        border-radius: 6px;
+        width: 130px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        position: relative;
+        margin-top: 15px;
+    }
+
+    .file-upload-wrapper .file-upload-input {
+        position: absolute;
+        left: 0;
+        opacity: 0;
+        z-index: 1;
+        cursor: pointer;
+        width: 130px;
+        bottom: -2px;
+    }
+
 </style>
-<div class="warpper">
-
-
-    <div class="d-none" id="oldResources">
-        <f:for each="{gdprManager.locations}" as="location">
-            <div>
-                <div class="mapId">{location.uid}</div>
-                <div class="mapname">{location.title}</div>
-                <span class="mapAddress">{location.address}</span>
-                <span class="maplat">{location.lat}</span>
-                <span class="maplon">{location.lon}</span>
-            </div>
-
-        </f:for>
-        <span class="mapZoom" id="mapZoom">{map.zoom}</span>
-    </div>
-
-
-    <input class="radio" id="one" name="group" type="radio" checked>
-    <input class="radio" id="two" name="group" type="radio">
-    <f:if condition="{googlemaps}">
-        <input class="radio" id="three" name="group" type="radio">
-    </f:if>
-
-    <div class="tabs">
-        <label class="tab" id="one-tab" for="one">Content</label>
-        <label class="tab" id="two-tab" for="two">Content Styling</label>
-        <f:if condition="{googlemaps}">
-            <label class="tab" id="three-tab" for="three">Map Location</label>
-        </f:if>
-
-    </div>
-    <div class="panels">
-        <div class="panel" id="one-panel">
-            <div class="">
-                <label for="heading">
-                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.heading" extensionName="GdprExtensionsComBmap"/>
-                </label><br />
-                <f:form.textfield property="heading" id="heading" class="my-4-9 pad-3-4 field-style"/><br />
-                <label for="buttonText">
-                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_text" extensionName="GdprExtensionsComBmap" />
-                </label><br />
-                <f:form.textfield property="buttonText" id="buttonText" class="my-4-9 pad-3-4 field-style"/><br />
-                <label for="content">
-                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.content" extensionName="GdprExtensionsComBmap"/>
-                </label><br />
-                <f:form.textarea property="content" id="content" cols="40" rows="15" class="my-4-9 pad-3-4 field-style"/><br />
-            </div>
+<f:comment>
+    <div class="warpper">
+    
+    
+        <div class="d-none" id="oldResources">
+            <f:for each="{gdprManager.locations}" as="location">
+                <div>
+                    <div class="mapId">{location.uid}</div>
+                    <div class="mapname">{location.title}</div>
+                    <span class="mapAddress">{location.address}</span>
+                    <span class="maplat">{location.lat}</span>
+                    <span class="maplon">{location.lon}</span>
+                </div>
+    
+            </f:for>
+            <span class="mapZoom" id="mapZoom">{map.zoom}</span>
         </div>
-        <div class="panel" id="two-panel">
-            <div class="d-flex">
-                <div class="uplodedImageTitle">
-                    <f:translate key="tx_gdprextensionscomyoutubeshorts_domain_model_gdprmanager" extensionName="GdprExtensionsComBmap" />
-                </div>
-                <label class="switch">
-                    <input type="checkbox">
-                    <span class="slider round"></span>
-                </label>
-                <f:form.textfield property="enableBackgroundImage" id="enabledbackgroundImage" class="d-none" />
-            </div>
-            <div class="uploadImage d-none">
-                <f:if condition="{gdprManager.backgroundImage} == ''">
-                    <f:then>
-                        <div class="uploaded-image">
-                            <f:image src="EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/Extension.svg" id="selected-image"
-                                     alt=""
-                                     class="back_img" />
-                        </div>
-
-                    </f:then>
-                    <f:else>
-                        <div class="uploaded-image">
-                            <f:image src="{gdprManager.backgroundImage}" id="selected-image"
-                                     alt=""
-                                     class="back_img" />
-                        </div>
-                    </f:else>
-                </f:if>
-                <f:form.textarea property="backgroundImage" id="backgroundImage" cols="40" rows="15"  class="d-none" /><br />
-                <div class="file-upload-wrapper my-4-9" id="selected-image-container">
-                    <button class="choose_file btn-bg-transparent" >Choose file</button>
-                    <input
-                        type="file"
-                        id="file-input"
-                        name="image"
-                        accept="image/*"
-                        class="file-upload-input btn-bg-transparent"
-                    />
+    
+    
+        <input class="radio" id="one" name="group" type="radio" checked>
+        <input class="radio" id="two" name="group" type="radio">
+        <f:if condition="{googlemaps}">
+            <input class="radio" id="three" name="group" type="radio">
+        </f:if>
+    
+        <div class="tabs">
+            <label class="tab" id="one-tab" for="one">Content</label>
+            <label class="tab" id="two-tab" for="two">Content Styling</label>
+            <f:if condition="{googlemaps}">
+                <label class="tab" id="three-tab" for="three">Map Location</label>
+            </f:if>
+    
+        </div>
+        <div class="panels">
+            <div class="panel" id="one-panel">
+                <div class="">
+                    <label for="heading">
+                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.heading" extensionName="GdprExtensionsComBmap"/>
+                    </label><br />
+                    <f:form.textfield property="heading" id="heading" class="my-4-9 pad-3-4 field-style"/><br />
+                    <label for="buttonText">
+                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_text" extensionName="GdprExtensionsComBmap" />
+                    </label><br />
+                    <f:form.textfield property="buttonText" id="buttonText" class="my-4-9 pad-3-4 field-style"/><br />
+                    <label for="content">
+                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.content" extensionName="GdprExtensionsComBmap"/>
+                    </label><br />
+                    <f:form.textarea property="content" id="content" cols="40" rows="15" class="my-4-9 pad-3-4 field-style"/><br />
                 </div>
             </div>
-
-            <div class="bg-color-parent d-block">
-                <label for="backgroundImageColor">
-                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.background_image_color" extensionName="GdprExtensionsComBmap"/>
+            <div class="panel" id="two-panel">
+                <div class="d-flex">
+                    <div class="uplodedImageTitle">
+                        <f:translate key="tx_gdprextensionscomyoutubeshorts_domain_model_gdprmanager" extensionName="GdprExtensionsComBmap" />
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                    <f:form.textfield property="enableBackgroundImage" id="enabledbackgroundImage" class="d-none" />
+                </div>
+                <div class="uploadImage d-none">
+                    <f:if condition="{gdprManager.backgroundImage} == ''">
+                        <f:then>
+                            <div class="uploaded-image">
+                                <f:image src="EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/Extension.svg" id="selected-image"
+                                         alt=""
+                                         class="back_img" />
+                            </div>
+    
+                        </f:then>
+                        <f:else>
+                            <div class="uploaded-image">
+                                <f:image src="{gdprManager.backgroundImage}" id="selected-image"
+                                         alt=""
+                                         class="back_img" />
+                            </div>
+                        </f:else>
+                    </f:if>
+                    <f:form.textarea property="backgroundImage" id="backgroundImage" cols="40" rows="15"  class="d-none" /><br />
+                    <div class="file-upload-wrapper my-4-9" id="selected-image-container">
+                        <button class="choose_file btn-bg-transparent" >Choose file</button>
+                        <input
+                            type="file"
+                            id="file-input"
+                            name="image"
+                            accept="image/*"
+                            class="file-upload-input btn-bg-transparent"
+                        />
+                    </div>
+                </div>
+    
+                <div class="bg-color-parent d-block">
+                    <label for="backgroundImageColor">
+                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.background_image_color" extensionName="GdprExtensionsComBmap"/>
+                    </label><br />
+                    <div class="d-flex">
+                        <f:form.textfield property="backgroundImageColor" id="backgroundImageColor" class="my-4-9 pad-3-4 colorField field-style w-185px"/>
+                        <span class="color-span">
+                            <input type="color" id="favcolor" name="favcolor" value="{f:if(condition:'{gdprManager.backgroundImageColor}',then:'{gdprManager.backgroundImageColor}',else:'#000')}" class="color-field bg-empty-color">
+                        </span>
+                    </div>
+                </div>
+                <br />
+                <label for="buttonColor">
+                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_color" extensionName="GdprExtensionsComBmap" />
                 </label><br />
                 <div class="d-flex">
-                    <f:form.textfield property="backgroundImageColor" id="backgroundImageColor" class="my-4-9 pad-3-4 colorField field-style w-185px"/>
+                    <f:form.textfield property="buttonColor" id="buttonColor" class="my-4-9 pad-3-4 colorField field-style w-185px"/>
                     <span class="color-span">
-						<input type="color" id="favcolor" name="favcolor" value="{f:if(condition:'{gdprManager.backgroundImageColor}',then:'{gdprManager.backgroundImageColor}',else:'#000')}" class="color-field bg-empty-color">
-					</span>
+                        <input type="color" id="favcolor" name="favcolor" value="{f:if(condition:'{gdprManager.buttonColor}',then:'{gdprManager.buttonColor}',else:'#000')}" class="color-field">
+                    </span>
+                </div>
+                <br />
+                <label for="textColor">
+                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.text_color" extensionName="GdprExtensionsComBmap" />
+                </label><br />
+                <div class="d-flex">
+                    <f:form.textfield property="textColor" id="textColor" class="my-4-9 pad-3-4 colorField field-style w-185px"/>
+                    <span class="color-span">
+                        <input type="color" id="favcolor" name="favcolor" value="{f:if(condition:'{gdprManager.textColor}',then:'{gdprManager.textColor}',else:'#000')}" class="color-field">
+                    </span>
+                </div>
+                <br />
+                <label for="buttonTextColor">
+                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_text_color" extensionName="GdprExtensionsComBmap" />
+                </label><br />
+                <div class="d-flex">
+                    <f:form.textfield property="buttonTextColor" id="buttonTextColor" class="my-4-9 pad-3-4 colorField field-style w-185px"/>
+                    <span class="color-span">
+                        <input type="color" id="buttonTextColor" name="favcolor" value="{f:if(condition:'{gdprManager.buttonTextColor}',then:'{gdprManager.buttonTextColor}',else:'#000')}" class="color-field">
+                    </span>
+                </div>
+                <br />
+                <label for="buttonShape">
+                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_shape" extensionName="GdprExtensionsComBmap" />
+                </label><br />
+                <div class="d-flex">
+                    <f:form.select name="buttonShape" property="buttonShape" class="field-style mt-5px w-185px">
+                        <f:form.select.option value="0">Default</f:form.select.option>
+                        <f:form.select.option value="round">Round</f:form.select.option>
+                        <f:form.select.option value="square">Square</f:form.select.option>
+                    </f:form.select>
+                </div>
+                <br />
+            </div>
+            <f:if condition="{googlemaps}">
+                <div class="panel" id="three-panel">
+                    <label for="mapApi">
+                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_api" extensionName="GdprExtensionsComBmap"/>
+                    </label><br />
+                    <f:form.textfield property="mapApi" name="mapApi" id="mapApi" class="my-4-9 pad-3-4 field-style" value="{mapApiKey}"/><br />
+                    <div id="locations-container" style="border-top: 2px solid #E7E6E6; margin-top: 33px;">
+                        <div class="location_fields">
+                            <div class="location_field">
+                                <div class="field_label">
+                            <span style="color: #0e0f0f">
+                            <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_title" extensionName="GdprExtensionsComBmap"/>
+                            </span>
+                                    <span style="color: rgba(233, 11, 11, 1)">
+                                    *
+                            </span>
+                                </div>
+                                <input type="text" id="title0" class="field_input" name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][title]"
+                                       value="" />
+                            </div>
+                            <input type="text" id="mapId0" class=" d-none" name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][mapId]"
+                            value="" />
+                            <div class="location_field">
+                                <div class="field_label">
+                            <span style="color: #0e0f0f">
+                            <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_description" extensionName="GdprExtensionsComBmap"/>
+                            </span>
+                                    <span style="color: rgba(233, 11, 11, 1)">
+                                    *
+                            </span>
+                                </div>
+                                <input type="text" id="address0" class="field_input" name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][address]"
+                                       value="" />
+                            </div>
+                        </div>
+                        <div class="location_coordinates">
+                            <div class="coordinate_field">
+                                <div class="coordinate_label">
+                            <span style="color: #0e0f0f">
+                            <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_latitude" extensionName="GdprExtensionsComBmap"/>
+                            </span>
+                                    <span style="color: rgba(233, 11, 11, 1)">
+                                    *
+                            </span>
+                                </div>
+                                <input type="number" class="coordinate_input" id="latitude0"
+                                       name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][lat]" value="" step="any" />
+                            </div>
+                            <div class="coordinate_field">
+                                <div class="coordinate_label">
+                            <span style="color: #0e0f0f">
+                            <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_longitude" extensionName="GdprExtensionsComBmap"/>
+                            </span>
+                                    <span style="color: rgba(233, 11, 11, 1)">
+                                    *
+                            </span>
+                                </div>
+                                <input type="number" class="coordinate_input" id="longitude0"
+                                       name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][lon]" value="" step="any" />
+                            </div>
+                        </div>
+                    </div>
+    
+                    <button id="add-location-btn" file class="add_location">
+                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_addlocation" extensionName="GdprExtensionsComBmap"/>
+                    </button>
+                </div>
+                <script>
+                    // for Map locations
+                    const mapId = document.querySelectorAll('.mapId')
+                    const mapName = document.querySelectorAll('.mapname')
+                    const mapAddress = document.querySelectorAll('.mapAddress')
+                    const mapLat = document.querySelectorAll('.maplat')
+                    const mapLon = document.querySelectorAll('.maplon')
+                    let count = 0;
+    
+                    let locationData = {
+                        location0: { title: "", address: "", latitude: "", longitude: "" },
+    
+                    };
+    
+                    const addLocationButton = document.getElementById("add-location-btn");
+                    const locationsContainer = document.getElementById(
+                        "locations-container"
+                    );
+    
+                    addLocationButton.addEventListener("click", function (event) {
+                        event.preventDefault();
+                        addLocation();
+    
+                    });
+    
+    
+                    const addLocation = () => {
+                        count++;
+                        const locationFieldSet = document.createElement("div");
+                        locationFieldSet.className = "location-field-set";
+                        locationFieldSet.dataset.locationId = `location${count}`;
+    
+                        locationFieldSet.innerHTML = `
+                <div style="border-top: 2px solid #E7E6E6; margin-top: 33px;">
+                <div class="close-location" style="display: flex; flex-direction: row-reverse; margin-top:18px; cursor: pointer">
+                    &times;
+                </div>
+                <div class="location_fields" style="border-top: 2px black; margin-top:0;">
+                    <div class="location_field">
+                        <label for="title${count}">Title <b style="color:red">*</b></label>
+                        <input type="text"
+                               id="title${count}"
+                               name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][title]"
+                               class="field_input" />
+                    </div>
+                    <input type="text"
+                               id="mapId${count}"
+                               name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][mapId]"
+                               class="field_input"
+                               style="display: none;" />
+                    <div class="location_field">
+                        <label for="address${count}">Description <b style="color:red">*</b></label>
+                        <input type="text"
+                               id="address${count}"
+                               name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][address]"
+                               class="field_input" />
+                    </div>
+                    </div>
+                    <br/>
+                    <div style="display:flex;gap:20px">
+                    <div class="coordinate_field">
+                        <label for="latitude${count}">Latitude <b style="color:red">*</b></label>
+                        <input type="number"
+                               id="latitude${count}"
+                               name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][lat]"
+                               class="coordinate_input"
+                               step="any"
+                               data-coordinate-type="latitude" />
+                    </div>
+                    <div class="coordinate_field">
+                        <label for="longitude${count}">Longitude <b style="color:red">*</b></label>
+                        <input type="number"
+                               id="longitude${count}"
+                               name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][lon]"
+                               class="coordinate_input"
+                               step="any"
+                               data-coordinate-type="longitude" />
+                    </div>
+                    </div>
                 </div>
             </div>
-            <br />
-            <label for="buttonColor">
-                <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_color" extensionName="GdprExtensionsComBmap" />
-            </label><br />
-            <div class="d-flex">
-                <f:form.textfield property="buttonColor" id="buttonColor" class="my-4-9 pad-3-4 colorField field-style w-185px"/>
-                <span class="color-span">
-					<input type="color" id="favcolor" name="favcolor" value="{f:if(condition:'{gdprManager.buttonColor}',then:'{gdprManager.buttonColor}',else:'#000')}" class="color-field">
-				</span>
-            </div>
-            <br />
-            <label for="textColor">
-                <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.text_color" extensionName="GdprExtensionsComBmap" />
-            </label><br />
-            <div class="d-flex">
-                <f:form.textfield property="textColor" id="textColor" class="my-4-9 pad-3-4 colorField field-style w-185px"/>
-                <span class="color-span">
-					<input type="color" id="favcolor" name="favcolor" value="{f:if(condition:'{gdprManager.textColor}',then:'{gdprManager.textColor}',else:'#000')}" class="color-field">
-				</span>
-            </div>
-            <br />
-            <label for="buttonTextColor">
-                <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_text_color" extensionName="GdprExtensionsComBmap" />
-            </label><br />
-            <div class="d-flex">
-                <f:form.textfield property="buttonTextColor" id="buttonTextColor" class="my-4-9 pad-3-4 colorField field-style w-185px"/>
-                <span class="color-span">
-					<input type="color" id="buttonTextColor" name="favcolor" value="{f:if(condition:'{gdprManager.buttonTextColor}',then:'{gdprManager.buttonTextColor}',else:'#000')}" class="color-field">
-				</span>
-            </div>
-            <br />
-            <label for="buttonShape">
-                <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_shape" extensionName="GdprExtensionsComBmap" />
-            </label><br />
-            <div class="d-flex">
-                <f:form.select name="buttonShape" property="buttonShape" class="field-style mt-5px w-185px">
-                    <f:form.select.option value="0">Default</f:form.select.option>
-                    <f:form.select.option value="round">Round</f:form.select.option>
-                    <f:form.select.option value="square">Square</f:form.select.option>
-                </f:form.select>
-            </div>
-            <br />
+    
+    
+      `;
+    
+                        locationsContainer.appendChild(locationFieldSet);
+    
+                        // Close button handler
+                        locationFieldSet
+                            .querySelector(".close-location")
+                            .addEventListener("click", function () {
+                                delete locationData[locationFieldSet.dataset.locationId];
+                                locationsContainer.removeChild(locationFieldSet);
+                                // initMap();
+                            });
+    
+                        // Initialize the location data object for this set
+                        locationData[`location${count}`] = {
+                            mapId:"",
+                            title: "",
+                            address: "",
+                            latitude: "",
+                            longitude: "",
+                        };
+    
+                        // Function to update location data object when an input changes
+                        const updateLocationData = (element, type) => {
+                            const locationId = element.closest(".location-field-set")
+                                .dataset.locationId;
+                            locationData[locationId][type] = element.value.trim();
+                            // initMap();
+                        };
+    
+                        // Event listeners for change on latitude and longitude
+                        locationFieldSet
+                            .querySelector(`#latitude${count}`)
+                            .addEventListener("change", function () {
+                                updateLocationData(this, "latitude");
+                            });
+    
+                        locationFieldSet
+                            .querySelector(`#longitude${count}`)
+                            .addEventListener("change", function () {
+                                updateLocationData(this, "longitude");
+                            });
+    
+                        showPopup = true;
+                    }
+    
+                    if (mapName && mapName.length > 0) {
+                        function populateFields(i) {
+                            console.log(locationData , locationData[`location${i}`]["mapId"]);
+                            document.getElementById(`mapId` + i).value = locationData[`location${i}`]["mapId"];
+                            document.getElementById(`title` + i).value = locationData[`location${i}`]["title"];
+                            document.getElementById(`address${i}`).value = locationData[`location${i}`]["address"];
+                            document.getElementById(`latitude${i}`).value = parseFloat(locationData[`location${i}`]["latitude"]);
+                            document.getElementById(`longitude${i}`).value = parseFloat(locationData[`location${i}`]["longitude"]);
+                        }
+                        mapName.forEach((v, i) => {
+                            if (mapName.length != i) {
+                                addLocation()
+                                console.log('hello' , v ,mapId[i].innerHTML);
+                                locationData['location' + i]["mapId"] = mapId[i].innerHTML;
+                                locationData['location' + i]["title"] = v.innerHTML;
+                                locationData['location' + i]["address"] = mapAddress[i].innerHTML;
+                                locationData['location' + i]["latitude"] = mapLat[i].innerHTML / 1000000;
+                                locationData['location' + i]["longitude"] = mapLon[i].innerHTML / 1000000;
+                            }
+                        })
+                        setTimeout(function () {
+                            for (let i = 0; i < Object.keys(locationData).length ; i++) {
+                                populateFields(i);
+                            }
+                        }, 1000);
+                    }
+                </script>
+            </f:if>
+    
         </div>
-        <f:if condition="{googlemaps}">
-            <div class="panel" id="three-panel">
+    </div>
+</f:comment>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="bmap2Click">
+        <div class="mainLogo">
+            <picture>
+                <f:image src="EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/gdprextension.com.svg" id=""
+                    alt="gdprextension.com.svg" class="" />
+            </picture>
+        </div>
+        <div class="extensionPromotions">
+            <div class="col-7">
+                <div class="content">
+                    <p class="bold">Explore More of our Solutions</p>
+                    <p class="light">2-Click Solutions Available Now to Check Out</p>
+                    <div class="pair-end mt-2">
+                        <span>
+                            <a href="https://www.gdpr-extensions.com/gdpr-solutions" class="btn btn-outline"
+                                target="_blank">Explore</a>
+                        </span>
+                        <span>
+                            <picture>
+                                <f:image src="EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/arrow.svg" id=""
+                                    alt="arrow.svg" class="" />
+                            </picture>
+                        </span>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-5">
+                <picture>
+                    <f:image src="EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/logosgroup.svg" id=""
+                        alt="logosgroup.svg" class="" />
+                </picture>
+            </div>
+        </div>
+        <div class="extensionBriefing">
+            <div class="main-headline">
+                <h2>Bing Map 2-Click Solution</h2>
+                <picture>
+                    <f:image src="EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/bing_map.svg" id=""
+                        alt="bingMaps.svg" class="" width="32px" height="32px" />
+                </picture>
+            </div>
+            <div class="content">
+                <p>Welcome to the your Bing Map 2-Click Solution Customization page.</p>
+                <p>Bing content will be masked until the user has consented for Google Map to collect their data.</p>
+                <a href="http://" class="seeExample">See Example</a>
+            </div>
+        </div>
+    
+    
+        <!-- accordion -->
+        <div class="custom-accordion">
+            <button type="button" class="accordion-toggle">
+                <f:image src="EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/dropdown.svg" />
+                <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.ContentMask"
+                    extensionName="GdprExtensionsComBmap" />
+            </button>
+            <div class="accordion-content">
+                <div class="d-flex mt-2">
+                    <div class="uplodedImageTitle">
+                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.background_image"
+                            extensionName="GdprExtensionsComBmap" />
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                    <f:form.textfield property="enableBackgroundImage" id="enabledbackgroundImage" class="d-none" />
+                </div>
+                <div class="uploadImage d-none">
+                    <div class="file-upload-wrapper my-4-9" id="selected-image-container">
+                        <button class="choose_file">
+                            <f:translate key="choose.file" extensionName="GdprExtensionsComBmap" />
+                            <f:image src="EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/upload.svg" alt="" class="" />
+                        </button>
+                        <input type="file" id="file-input" name="image" accept="image/*"
+                            class="file-upload-input btn-bg-transparent" />
+                    </div>
+                    <f:if condition="{gdprManager.backgroundImage} == ''">
+                        <f:then>
+                            <div class="uploaded-image upload-btn">
+                                <f:image src="EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/Extension.svg"
+                                    id="selected-image" alt="" class="back_img" />
+                                <f:variable name="defaultImageUri"
+                                    value="{f:uri.image(src: 'EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/gdpr-logo-icon.svg')}" />
+    
+                            </div>
+                        </f:then>
+                        <f:else>
+                            <div class="uploaded-image upload-btn">
+                                <f:image src="{gdprManager.backgroundImage}" id="selected-image" alt="" class="back_img" />
+                            </div>
+                            <f:variable name="defaultImageUri"
+                                value="{f:uri.image(src: 'EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/gdpr-logo-icon.svg')}" />
+                        </f:else>
+                    </f:if>
+                    <f:image src="EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/cancel.svg" alt="" class="cancel"
+                        onclick="resetToDefaultImage('{defaultImageUri}')" />
+                    <f:form.textarea property="backgroundImage" id="backgroundImage" cols="40" rows="15" class="d-none" />
+                    <br />
+                </div>
+                <div class="bg-color-parent d-block mt-1 mb-2">
+                    <div class="bold">Color</div>
+                    <div class="d-flex gap center">
+                        <f:form.textfield property="backgroundImageColor" id="backgroundImageColor"
+                            class="my-4-9 pad-3-4 colorField field-style w-185px" style="display: none;" />
+    
+                        <input type="color" id="favcolor" name="favcolor"
+                            value="{f:if(condition:'{gdprManager.backgroundImageColor}',then:'{gdprManager.backgroundImageColor}',else:'#FFF')}"
+                            class="color-field bg-empty-color">
+    
+                        <label for="backgroundImageColor">
+                            <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.background_image_color"
+                                extensionName="GdprExtensionsComBmap" />
+                        </label><br />
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="accordion-toggle">
+                <f:image src="EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/dropdown.svg" />
+                <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.CustomizeBtn"
+                    extensionName="GdprExtensionsComBmap" />
+            </button>
+            <div class="accordion-content text-content">
+                <div class="bold mt-2"> Button Color</div>
+                <div class="d-flex gap center">
+                    <f:form.textfield property="buttonColor" id="buttonColor" class="my-4-9 pad-3-4 colorField field-style w-185px"
+                        style="display: none;" />
+                    <span class="pair-center">
+                        <input type="color" id="favcolor" name="favcolor"
+                            value="{f:if(condition:'{gdprManager.buttonColor}',then:'{gdprManager.buttonColor}',else:'#FFF')}"
+                            class="color-field">
+                        <label for="buttonColor">
+                            <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_color"
+                                extensionName="GdprExtensionsComBmap" />
+                        </label>
+                    </span>
+            
+                    <span class="pair-center">
+                        <f:form.textfield property="buttonTextColor" id="buttonTextColor"
+                            class="my-4-9 pad-3-4 colorField field-style w-185px" style="display: none;" />
+                        <span class="color-span">
+                            <input type="color" id="buttonTextColor" name="favcolor"
+                                value="{f:if(condition:'{gdprManager.buttonTextColor}',then:'{gdprManager.buttonTextColor}',else:'#000')}"
+                                class="color-field">
+                        </span>
+                        <label for="buttonTextColor">
+                            <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_text_color"
+                                extensionName="GdprExtensionsComBmap" />
+                        </label>
+            
+                    </span>
+            
+                </div>
+                <br />
+                <div class="bold" for="buttonShape">
+                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.button_shape"
+                        extensionName="GdprExtensionsComBmap" />
+                </div>
+                <div class="d-flex">
+                    <f:form.select name="buttonShape" property="buttonShape" class="field-style mt-5px w-185px">
+                        <f:form.select.option value="0">
+                            <f:translate key="shape.default" extensionName="GdprExtensionsComBmap" />
+                        </f:form.select.option>
+                        <f:form.select.option value="round">
+                            <f:translate key="shape.round" extensionName="GdprExtensionsComBmap" />
+                        </f:form.select.option>
+                        <f:form.select.option value="square">
+                            <f:translate key="shape.square" extensionName="GdprExtensionsComBmap" />
+                        </f:form.select.option>
+                    </f:form.select>
+                </div>
+                <br />
+                <div style="display: flex; flex-direction: column;" class="mb-2">
+                    <label class="bold" for="buttonText">
+                        Button Text
+                    </label>
+                    <f:form.textfield property="buttonText" id="buttonText" class="my-4-9 pad-3-4 colorField field-style w-185px" />
+                </div>
+            </div>
+            
+            <button type="button" class="accordion-toggle">
+                <f:image src="EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/dropdown.svg" />
+                <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.CustomizeMsg"
+                    extensionName="GdprExtensionsComBmap" />
+            </button>
+            <div class="accordion-content text-content">
+                <div class="mt-2">
+                    <div class="bold" for="textColor">
+                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.text_color"
+                            extensionName="GdprExtensionsComBmap" />
+                    </div>
+            
+                    <div class="d-flex gap center">
+                        <f:form.textfield property="headingColor" id="headingColor"
+                            class="my-4-9 pad-3-4 colorField field-style w-185px" style="display: none;" />
+                        <span class="pair-center">
+                            <input type="color" id="favcolor" name="favcolor"
+                                value="{f:if(condition:'{gdprManager.headingColor}',then:'{gdprManager.headingColor}',else:'#000')}"
+                                class="color-field">
+                            <label for="headingColor">
+                                <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.heading_color"
+                                    extensionName="GdprExtensionsComBmap" />
+                            </label>
+                        </span>
+            
+                        <span class="pair-center">
+                            <f:form.textfield property="textColor" id="textColor"
+                                class="my-4-9 pad-3-4 colorField field-style w-185px" style="display: none;" />
+                            <span class="color-span">
+                                <input type="color" id="textColor" name="favcolor"
+                                    value="{f:if(condition:'{gdprManager.textColor}',then:'{gdprManager.textColor}',else:'#000')}"
+                                    class="color-field">
+                            </span>
+                            <label for="textColor">
+                                <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.text_color"
+                                    extensionName="GdprExtensionsComBmap" />
+                            </label>
+            
+                        </span>
+            
+                    </div>
+                    <div class="bold mt-2" for="heading">
+                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.heading"
+                            extensionName="GdprExtensionsComBmap" />
+                    </div>
+                    <f:form.textfield property="heading" id="heading" class="my-4-9 pad-3-4 field-style" /><br />
+                    <div for="content mt-1" class="bold">
+                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.content"
+                            extensionName="GdprExtensionsComBmap" />
+                    </div>
+                    <f:form.textarea property="content" id="content" cols="40" rows="15" class="my-4-9 pad-3-4 field-style" />
+                    <br />
+            
+                </div>
+            </div>
+            <button type="button" class="accordion-toggle">
+                <f:image src="EXT:gdpr_extensions_com_bmap/Resources/Public/Icons/dropdown.svg" />
+                Map Location
+            </button>
+            <div class="accordion-content text-content">
+                <div class="d-none" id="oldResources">
+                    <f:for each="{gdprManager.locations}" as="location">
+                        <div>
+                            <div class="mapname">{location.title}</div>
+                            <span class="mapAddress">{location.address}</span>
+                            <span class="maplat">{location.lat}</span>
+                            <span class="maplon">{location.lon}</span>
+                        </div>
+            
+                    </f:for>
+                    <span class="mapZoom" id="mapZoom">{map.zoom}</span>
+                </div><br />
                 <label for="mapApi">
-                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_api" extensionName="GdprExtensionsComBmap"/>
+                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_api"
+                        extensionName="GdprExtensionsComGmap" />
                 </label><br />
-                <f:form.textfield property="mapApi" name="mapApi" id="mapApi" class="my-4-9 pad-3-4 field-style" value="{mapApiKey}"/><br />
-                <div id="locations-container" style="border-top: 2px solid #E7E6E6; margin-top: 33px;">
+                <f:form.textfield property="mapApi" id="mapApi" class="my-4-9 pad-3-4 field-style" />
+                <div id="locations-container" style="border-top: 2px solid #E7E6E6; margin-top: 13px; margin-bottom: 43px;">
                     <div class="location_fields">
                         <div class="location_field">
                             <div class="field_label">
-                        <span style="color: #0e0f0f">
-                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_title" extensionName="GdprExtensionsComBmap"/>
-                        </span>
+                                <span style="color: #0e0f0f">
+                                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_title"
+                                        extensionName="GdprExtensionsComGmap" />
+                                </span>
                                 <span style="color: rgba(233, 11, 11, 1)">
-                                *
-                        </span>
+                                    *
+                                </span>
                             </div>
-                            <input type="text" id="title0" class="field_input" name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][title]"
-                                   value="" />
+                            <input type="text" id="title0" class="field_input"
+                                name="tx_gdprextensionscomgmap_gdpr_gdprextensionscomgmapgdprgooglemaps[locations][0][title]"
+                                value="" />
                         </div>
-                        <input type="text" id="mapId0" class=" d-none" name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][mapId]"
-                        value="" />
                         <div class="location_field">
                             <div class="field_label">
-                        <span style="color: #0e0f0f">
-                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_description" extensionName="GdprExtensionsComBmap"/>
-                        </span>
+                                <span style="color: #0e0f0f">
+                                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_description"
+                                        extensionName="GdprExtensionsComGmap" />
+                                </span>
                                 <span style="color: rgba(233, 11, 11, 1)">
-                                *
-                        </span>
+                                    *
+                                </span>
                             </div>
-                            <input type="text" id="address0" class="field_input" name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][address]"
-                                   value="" />
+                            <input type="text" id="address0" class="field_input"
+                                name="tx_gdprextensionscomgmap_gdpr_gdprextensionscomgmapgdprgooglemaps[locations][0][address]"
+                                value="" />
                         </div>
                     </div>
                     <div class="location_coordinates">
                         <div class="coordinate_field">
                             <div class="coordinate_label">
-                        <span style="color: #0e0f0f">
-                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_latitude" extensionName="GdprExtensionsComBmap"/>
-                        </span>
+                                <span style="color: #0e0f0f">
+                                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_latitude"
+                                        extensionName="GdprExtensionsComGmap" />
+                                </span>
                                 <span style="color: rgba(233, 11, 11, 1)">
-                                *
-                        </span>
+                                    *
+                                </span>
                             </div>
                             <input type="number" class="coordinate_input" id="latitude0"
-                                   name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][lat]" value="" step="any" />
+                                name="tx_gdprextensionscomgmap_gdpr_gdprextensionscomgmapgdprgooglemaps[locations][0][lat]" value=""
+                                step="any" />
                         </div>
                         <div class="coordinate_field">
                             <div class="coordinate_label">
-                        <span style="color: #0e0f0f">
-                        <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_longitude" extensionName="GdprExtensionsComBmap"/>
-                        </span>
+                                <span style="color: #0e0f0f">
+                                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_longitude"
+                                        extensionName="GdprExtensionsComGmap" />
+                                </span>
                                 <span style="color: rgba(233, 11, 11, 1)">
-                                *
-                        </span>
+                                    *
+                                </span>
                             </div>
                             <input type="number" class="coordinate_input" id="longitude0"
-                                   name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][0][lon]" value="" step="any" />
+                                name="tx_gdprextensionscomgmap_gdpr_gdprextensionscomgmapgdprgooglemaps[locations][0][lon]" value=""
+                                step="any" />
                         </div>
                     </div>
                 </div>
-
                 <button id="add-location-btn" file class="add_location">
-                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_addlocation" extensionName="GdprExtensionsComBmap"/>
+                    <f:translate key="tx_gdprextensionscomyoutube_domain_model_gdprmanager.map_addlocation"
+                        extensionName="GdprExtensionsComGmap" />
                 </button>
-            </div>
-            <script>
-                // for Map locations
-                const mapId = document.querySelectorAll('.mapId')
-                const mapName = document.querySelectorAll('.mapname')
-                const mapAddress = document.querySelectorAll('.mapAddress')
-                const mapLat = document.querySelectorAll('.maplat')
-                const mapLon = document.querySelectorAll('.maplon')
-                let count = 0;
+            
+                <f:if condition="{googlemaps}">
+                    <script>
+                        // for Map locations
+                        const mapName = document.querySelectorAll('.mapname')
+                        const mapAddress = document.querySelectorAll('.mapAddress')
+                        const mapLat = document.querySelectorAll('.maplat')
+                        const mapLon = document.querySelectorAll('.maplon')
+                        let count = 0;
 
-                let locationData = {
-                    location0: { title: "", address: "", latitude: "", longitude: "" },
+                        let locationData = {
+                            location0: { title: "", address: "", latitude: "", longitude: "" },
 
-                };
+                        };
 
-                const addLocationButton = document.getElementById("add-location-btn");
-                const locationsContainer = document.getElementById(
-                    "locations-container"
-                );
+                        const addLocationButton = document.getElementById("add-location-btn");
+                        const locationsContainer = document.getElementById(
+                            "locations-container"
+                        );
 
-                addLocationButton.addEventListener("click", function (event) {
-                    event.preventDefault();
-                    addLocation();
+                        addLocationButton.addEventListener("click", function (event) {
+                            event.preventDefault();
+                            addLocation();
 
-                });
+                        });
 
 
-                const addLocation = () => {
-                    count++;
-                    const locationFieldSet = document.createElement("div");
-                    locationFieldSet.className = "location-field-set";
-                    locationFieldSet.dataset.locationId = `location${count}`;
+                        const addLocation = () => {
+                            count++;
+                            const locationFieldSet = document.createElement("div");
+                            locationFieldSet.className = "location-field-set";
+                            locationFieldSet.dataset.locationId = `location${count}`;
 
-                    locationFieldSet.innerHTML = `
-            <div style="border-top: 2px solid #E7E6E6; margin-top: 33px;">
-            <div class="close-location" style="display: flex; flex-direction: row-reverse; margin-top:18px; cursor: pointer">
-                &times;
-            </div>
-            <div class="location_fields" style="border-top: 2px black; margin-top:0;">
-                <div class="location_field">
-                    <label for="title${count}">Title <b style="color:red">*</b></label>
-                    <input type="text"
-                           id="title${count}"
-                           name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][title]"
-                           class="field_input" />
-                </div>
-                <input type="text"
-                           id="mapId${count}"
-                           name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][mapId]"
-                           class="field_input"
-                           style="display: none;" />
-                <div class="location_field">
-                    <label for="address${count}">Description <b style="color:red">*</b></label>
-                    <input type="text"
-                           id="address${count}"
-                           name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][address]"
-                           class="field_input" />
-                </div>
-                </div>
-                <br/>
-                <div style="display:flex;gap:20px">
-                <div class="coordinate_field">
-                    <label for="latitude${count}">Latitude <b style="color:red">*</b></label>
-                    <input type="number"
-                           id="latitude${count}"
-                           name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][lat]"
-                           class="coordinate_input"
-                           step="any"
-                           data-coordinate-type="latitude" />
-                </div>
-                <div class="coordinate_field">
-                    <label for="longitude${count}">Longitude <b style="color:red">*</b></label>
-                    <input type="number"
-                           id="longitude${count}"
-                           name="tx_gdprextensionscombmap_gdpr_gdprextensionscombmapbingmap[locations][${count}][lon]"
-                           class="coordinate_input"
-                           step="any"
-                           data-coordinate-type="longitude" />
-                </div>
-                </div>
+                            locationFieldSet.innerHTML = `
+                                                <div style="border-top: 2px solid #E7E6E6; margin-top: 33px;">
+                                                <div class="close-location" style="display: flex; flex-direction: row-reverse; margin-top:18px; cursor: pointer">
+                                                    &times;
+                                                </div>
+                                                <div class="location_fields" style="border-top: 2px black; margin-top:0;">
+                                                    <div class="location_field">
+                                                        <label for="title${count}">Title <b style="color:red">*</b></label>
+                                                        <input type="text"
+                                                               id="title${count}"
+                                                               name="tx_gdprextensionscomgmap_gdpr_gdprextensionscomgmapgdprgooglemaps[locations][${count}][title]"
+                                                               class="field_input" />
+                                                    </div>
+                                                    <div class="location_field">
+                                                        <label for="address${count}">Description <b style="color:red">*</b></label>
+                                                        <input type="text"
+                                                               id="address${count}"
+                                                               name="tx_gdprextensionscomgmap_gdpr_gdprextensionscomgmapgdprgooglemaps[locations][${count}][address]"
+                                                               class="field_input" />
+                                                    </div>
+                                                    </div>
+                                                    <br/>
+                                                    <div style="display:flex;gap:20px">
+                                                    <div class="coordinate_field">
+                                                        <label for="latitude${count}">Latitude <b style="color:red">*</b></label>
+                                                        <input type="number"
+                                                               id="latitude${count}"
+                                                               name="tx_gdprextensionscomgmap_gdpr_gdprextensionscomgmapgdprgooglemaps[locations][${count}][lat]"
+                                                               class="coordinate_input"
+                                                               step="any"
+                                                               data-coordinate-type="latitude" />
+                                                    </div>
+                                                    <div class="coordinate_field">
+                                                        <label for="longitude${count}">Longitude <b style="color:red">*</b></label>
+                                                        <input type="number"
+                                                               id="longitude${count}"
+                                                               name="tx_gdprextensionscomgmap_gdpr_gdprextensionscomgmapgdprgooglemaps[locations][${count}][lon]"
+                                                               class="coordinate_input"
+                                                               step="any"
+                                                               data-coordinate-type="longitude"
+                                                               value="" />
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                    
+                                    
+                                      `;
+
+                            locationsContainer.appendChild(locationFieldSet);
+
+                            // Close button handler
+                            locationFieldSet
+                                .querySelector(".close-location")
+                                .addEventListener("click", function () {
+                                    delete locationData[locationFieldSet.dataset.locationId];
+                                    locationsContainer.removeChild(locationFieldSet);
+                                    // initMap();
+                                    console.log("Updated Location Data:", locationData);
+                                });
+
+                            // Initialize the location data object for this set
+                            locationData[`location${count}`] = {
+                                title: "",
+                                address: "",
+                                latitude: "",
+                                longitude: "",
+                            };
+
+                            // Function to update location data object when an input changes
+                            const updateLocationData = (element, type) => {
+                                const locationId = element.closest(".location-field-set")
+                                    .dataset.locationId;
+                                locationData[locationId][type] = element.value.trim();
+                                console.log("Updated Location Data:", locationData);
+                                // initMap();
+                            };
+
+                            // Event listeners for change on latitude and longitude
+                            locationFieldSet
+                                .querySelector(`#latitude${count}`)
+                                .addEventListener("change", function () {
+                                    updateLocationData(this, "latitude");
+                                });
+
+                            locationFieldSet
+                                .querySelector(`#longitude${count}`)
+                                .addEventListener("change", function () {
+                                    updateLocationData(this, "longitude");
+                                });
+
+                            showPopup = true;
+                        }
+
+                        if (mapName && mapName.length > 0) {
+                            console.log("mapname", mapName)
+                            function populateFields(i) {
+                                console.log(document.getElementById(`title` + i))
+                                document.getElementById(`title` + i).value = locationData[`location${i}`]["title"];
+                                document.getElementById(`address${i}`).value = locationData[`location${i}`]["address"];
+                                document.getElementById(`latitude${i}`).value = parseFloat(locationData[`location${i}`]["latitude"]);
+                                document.getElementById(`longitude${i}`).value = parseFloat(locationData[`location${i}`]["longitude"]);
+                            }
+                            mapName.forEach((v, i) => {
+                                if (mapName.length != i) {
+                                    addLocation()
+                                    locationData['location' + i]["title"] = v.innerHTML;
+                                    locationData['location' + i]["address"] = mapAddress[i].innerHTML;
+                                    locationData['location' + i]["latitude"] = mapLat[i].innerHTML / 1000000;
+                                    locationData['location' + i]["longitude"] = mapLon[i].innerHTML / 1000000;
+                                }
+                            })
+                            setTimeout(function () {
+                                for (let i = 0; i < Object.keys(locationData).length; i++) {
+                                    populateFields(i);
+                                }
+                            }, 1000);
+                        }
+                    </script>
+                </f:if>
             </div>
         </div>
-
-
-  `;
-
-                    locationsContainer.appendChild(locationFieldSet);
-
-                    // Close button handler
-                    locationFieldSet
-                        .querySelector(".close-location")
-                        .addEventListener("click", function () {
-                            delete locationData[locationFieldSet.dataset.locationId];
-                            locationsContainer.removeChild(locationFieldSet);
-                            // initMap();
-                        });
-
-                    // Initialize the location data object for this set
-                    locationData[`location${count}`] = {
-                        mapId:"",
-                        title: "",
-                        address: "",
-                        latitude: "",
-                        longitude: "",
-                    };
-
-                    // Function to update location data object when an input changes
-                    const updateLocationData = (element, type) => {
-                        const locationId = element.closest(".location-field-set")
-                            .dataset.locationId;
-                        locationData[locationId][type] = element.value.trim();
-                        // initMap();
-                    };
-
-                    // Event listeners for change on latitude and longitude
-                    locationFieldSet
-                        .querySelector(`#latitude${count}`)
-                        .addEventListener("change", function () {
-                            updateLocationData(this, "latitude");
-                        });
-
-                    locationFieldSet
-                        .querySelector(`#longitude${count}`)
-                        .addEventListener("change", function () {
-                            updateLocationData(this, "longitude");
-                        });
-
-                    showPopup = true;
-                }
-
-                if (mapName && mapName.length > 0) {
-                    function populateFields(i) {
-                        console.log(locationData , locationData[`location${i}`]["mapId"]);
-                        document.getElementById(`mapId` + i).value = locationData[`location${i}`]["mapId"];
-                        document.getElementById(`title` + i).value = locationData[`location${i}`]["title"];
-                        document.getElementById(`address${i}`).value = locationData[`location${i}`]["address"];
-                        document.getElementById(`latitude${i}`).value = parseFloat(locationData[`location${i}`]["latitude"]);
-                        document.getElementById(`longitude${i}`).value = parseFloat(locationData[`location${i}`]["longitude"]);
-                    }
-                    mapName.forEach((v, i) => {
-                        if (mapName.length != i) {
-                            addLocation()
-                            console.log('hello' , v ,mapId[i].innerHTML);
-                            locationData['location' + i]["mapId"] = mapId[i].innerHTML;
-                            locationData['location' + i]["title"] = v.innerHTML;
-                            locationData['location' + i]["address"] = mapAddress[i].innerHTML;
-                            locationData['location' + i]["latitude"] = mapLat[i].innerHTML / 1000000;
-                            locationData['location' + i]["longitude"] = mapLon[i].innerHTML / 1000000;
-                        }
-                    })
-                    setTimeout(function () {
-                        for (let i = 0; i < Object.keys(locationData).length ; i++) {
-                            populateFields(i);
-                        }
-                    }, 1000);
-                }
-            </script>
-        </f:if>
-
     </div>
-</div>
 
+    <div class="popUpoverlay" style="display: none;">
+        <div class="popUp">
+            <div class="popUp--content" id="beforeConsent">
+                <p class="bold">Bing Map Content Disabled - Need Consent</p>
+                <p class="light">You consent for viewing Bing Map content that may collect your data </p>
+                <a href="" class="btn btn-primary" id="consentBtn">I consent</a>
+            </div>
+            <div class="popUp--content" id="afterConsent" style="display: none;">
+                <p class="bold">Bing Map</p>
+            </div>
+        </div>
+    </div>
 
-<script>
-    const backgroudImage = document.getElementById("backgroundImage");
+    <script>
+        const backgroudImage = document.getElementById("backgroundImage");
 
-    const uploadImageUrl =
-        document.getElementById("uploadImageUrl").innerText;
+        const uploadImageUrl = document.getElementById("uploadImageUrl").innerText;
 
-    document
-        .getElementById("file-input")
-        ?.addEventListener("change", handleFileSelect);
+        document.getElementById("file-input")?.addEventListener("change", handleFileSelect);
 
-    function handleFileSelect(event) {
-        const fileInput = event.target;
-        const selectedImageContainer = document.getElementById(
-            "selected-image-container"
-        );
-        const selectedImage = document.getElementById("selected-image");
+        function handleFileSelect(event) {
+            const fileInput = event.target;
+            const selectedImageContainer = document.getElementById(
+                "selected-image-container"
+            );
+            const selectedImage = document.getElementById("selected-image");
 
-        const file = fileInput.files[0];
+            const file = fileInput.files[0];
 
-        if (file) {
-            const reader = new FileReader();
+            if (file) {
+                const reader = new FileReader();
 
-            reader.onload = function (e) {
-                selectedImage.src = e.target.result;
-                selectedImageContainer.style.display = "block";
-            };
+                reader.onload = function (e) {
+                    selectedImage.src = e.target.result;
+                    selectedImageContainer.style.display = "block";
+                };
 
-            reader.readAsDataURL(file);
+                reader.readAsDataURL(file);
 
-            const formData = new FormData();
-            formData.append("image", file);
-            formData.append("isAjax", 1);
+                const formData = new FormData();
+                formData.append("image", file);
+                formData.append("isAjax", 1);
 
-            const xhr = new XMLHttpRequest();
-            xhr.open("POST", uploadImageUrl, true);
-            xhr.setRequestHeader("Accept", "application/json");
-            xhr.onload = () => {
-                if (xhr.status === 200) {
-                    const response = JSON.parse(xhr.responseText);
-                    backgroudImage.value = response.url;
-                } else {
-                    console.log("Error");
-                }
-            };
-            xhr.send(formData);
-        } else {
-            selectedImageContainer.style.display = "none";
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", uploadImageUrl, true);
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        backgroudImage.value = response.url;
+                    } else {
+                        console.log("Error");
+                    }
+                };
+                xhr.send(formData);
+            } else {
+                selectedImageContainer.style.display = "none";
+            }
         }
-    }
 
-    var checkbox = document.querySelector('.switch input[type="checkbox"]');
+        var checkbox = document.querySelector('.switch input[type="checkbox"]');
 
-    checkbox.addEventListener('change', function() {
-        toggle(this);
-    });
-
-    var colorPickers = document.querySelectorAll('.color-field');
-
-    // Loop through each color picker
-    colorPickers.forEach(function(picker) {
-        picker.addEventListener('change', function(e) {
-            var color = e.target.parentElement.parentElement.querySelector('.colorField');
-            color.value = e.target.value
+        checkbox.addEventListener('change', function () {
+            toggle(this);
         });
-    });
 
-    let enabledbackgroundImage = document.getElementById('enabledbackgroundImage');
-    let checkboxToggle = document.querySelector('.switch input');
-    let backgroundImageColor = document.querySelector('#backgroundImageColor');
-    let bgEmptyColor = document.querySelector('.bg-empty-color');
-    if(enabledbackgroundImage.value == 1) {
-        checkboxToggle.setAttribute('checked', true);
-        toggle('image')
-    } else if(enabledbackgroundImage.value == 0) {
-        toggle('bg-color')
-    }
+        var colorPickers = document.querySelectorAll('.color-field');
 
-    function toggle(e) {
-        var uploadImageDiv = document.querySelector('.uploadImage');
-        var bgcolorDiv = document.querySelector('.bg-color-parent');
-        if (e.checked) {
-            uploadImageDiv.classList.remove('d-none');
-            uploadImageDiv.classList.add('d-flex');
-            bgcolorDiv.classList.remove('d-block');
-            bgcolorDiv.classList.add('d-none');
-            enabledbackgroundImage.value = 1
-            backgroundImageColor.value="";
-            bgEmptyColor.value='#000';
-        } else if(e.checked == false) {
-            uploadImageDiv.classList.remove('d-flex');
-            uploadImageDiv.classList.add('d-none');
-            bgcolorDiv.classList.add('d-block');
-            bgcolorDiv.classList.remove('d-none');
-            enabledbackgroundImage.value = 0
+        // Loop through each color picker
+        colorPickers.forEach(function (picker) {
+            picker.addEventListener('change', function (e) {
+                var color = e.target.parentElement.parentElement.querySelector('.colorField');
+                color.value = e.target.value
+                console.log(color.value)
+            });
+        });
+
+        let enabledbackgroundImage = document.getElementById('enabledbackgroundImage');
+        let checkboxToggle = document.querySelector('.switch input');
+        let backgroundImageColor = document.querySelector('#backgroundImageColor');
+        let bgEmptyColor = document.querySelector('.bg-empty-color');
+
+        console.log(enabledbackgroundImage.value)
+        if (enabledbackgroundImage.value == 1) {
+            checkboxToggle.setAttribute('checked', true);
+            toggle('image')
+        } else if (enabledbackgroundImage.value == 0) {
+            toggle('bg-color')
         }
 
-        if(e == 'image') {
-            uploadImageDiv.classList.remove('d-none');
-            uploadImageDiv.classList.add('d-flex');
-            bgcolorDiv.classList.remove('d-block');
-            bgcolorDiv.classList.add('d-none');
-            backgroundImageColor.value="";
-            bgEmptyColor.value='#000';
+        function toggle(e) {
+            var uploadImageDiv = document.querySelector('.uploadImage');
+            var bgcolorDiv = document.querySelector('.bg-color-parent');
+            if (e.checked) {
+                uploadImageDiv.classList.remove('d-none');
+                uploadImageDiv.classList.add('d-flex');
+                bgcolorDiv.classList.remove('d-block');
+                bgcolorDiv.classList.add('d-none');
+                enabledbackgroundImage.value = 1
+                backgroundImageColor.value = "";
+                bgEmptyColor.value = '#000';
+            } else if (e.checked == false) {
+                uploadImageDiv.classList.remove('d-flex');
+                uploadImageDiv.classList.add('d-none');
+                bgcolorDiv.classList.add('d-block');
+                bgcolorDiv.classList.remove('d-none');
+                enabledbackgroundImage.value = 0
+            }
+
+            if (e == 'image') {
+                uploadImageDiv.classList.remove('d-none');
+                uploadImageDiv.classList.add('d-flex');
+                bgcolorDiv.classList.remove('d-block');
+                bgcolorDiv.classList.add('d-none');
+                backgroundImageColor.value = "";
+                bgEmptyColor.value = '#000';
+            }
+
+            if (e == 'bg-color') {
+                uploadImageDiv.classList.remove('d-flex');
+                uploadImageDiv.classList.add('d-none');
+                bgcolorDiv.classList.add('d-block');
+                bgcolorDiv.classList.remove('d-none');
+            }
         }
 
-        if(e == 'bg-color') {
-            uploadImageDiv.classList.remove('d-flex');
-            uploadImageDiv.classList.add('d-none');
-            bgcolorDiv.classList.add('d-block');
-            bgcolorDiv.classList.remove('d-none');
+        //  accordion
+        var accToggles = document.getElementsByClassName("accordion-toggle");
+
+        function handleAccordionClick(event) {
+            var toggle = event.currentTarget;
+            var contentPanel = toggle.nextElementSibling;
+            var img = toggle.querySelector('.accordion-toggle img');
+
+            Array.from(accToggles).forEach(function (otherToggle) {
+                if (otherToggle !== toggle) {
+                    otherToggle.classList.remove("active");
+                    var otherImg = otherToggle.querySelector('img');
+                    if (otherImg) {
+                        otherImg.style.transform = ''; // Reset rotation
+                    }
+                    otherToggle.nextElementSibling.style.maxHeight = null;
+                }
+            });
+
+            toggle.classList.toggle("active");
+            if (img) {
+                if (toggle.classList.contains('active')) {
+                    img.style.transform = 'rotate(90deg)';
+                } else {
+                    img.style.transform = '';
+                }
+                img.style.transition = 'transform 0.3s ease-in-out';
+            }
+
+            contentPanel.style.maxHeight = toggle.classList.contains('active') ? contentPanel.scrollHeight + "px" : null;
+
+            setTimeout(function () {
+                if (!toggle.classList.contains('active')) {
+                    return;
+                }
+                toggle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
         }
-    }
+
+        Array.from(accToggles).forEach(function (toggle) {
+            toggle.addEventListener("click", handleAccordionClick);
+        });
+
+        document.querySelector('.seeExample').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default link behavior
+            document.querySelector('.popUpoverlay').style.display = 'flex';
+        });
+
+        document.querySelector('#consentBtn').addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent the default link behavior
+            document.querySelector('#beforeConsent').style.display = 'none';
+            document.querySelector('#afterConsent').style.display = 'flex';
+        });
+
+        document.querySelector('.popUpoverlay').addEventListener('click', function (event) {
+            if (event.target === this) {
+                this.style.display = 'none';
+            }
+        });
+        function resetToDefaultImage(defaultImagePath) {
+            document.getElementById('selected-image').src = defaultImagePath;
+            document.getElementById('backgroundImage').value = '';
+        }
 
 
-
-
-</script>
+    </script>
 </html>
